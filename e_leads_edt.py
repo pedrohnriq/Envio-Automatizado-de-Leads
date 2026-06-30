@@ -35,6 +35,10 @@ def leads_edt():
         
     edt = pd.read_sql(sql, conn)
 
+    valores_vazios = ((edt['TELEFONE'].isnull()) & (edt['CELULAR'].isnull())).sum()
+    print(f"Quantidade de valores vazios: {valores_vazios}")
+
+    edt.dropna(subset=['TELEFONE', 'CELULAR'], how='all', inplace=True)
 
     data_formatada = data_fim.strftime('%Y-%m-%d')
     nome_arquivo = f"Leads EDT {data_formatada}.xlsx"
