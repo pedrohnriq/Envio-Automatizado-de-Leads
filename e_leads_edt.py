@@ -1,6 +1,7 @@
 from datetime import datetime, timedelta
 from conexao import conexao
 import pandas as pd
+import os 
 
 conn = conexao()
 
@@ -40,9 +41,18 @@ def leads_edt():
 
     edt.dropna(subset=['TELEFONE', 'CELULAR'], how='all', inplace=True)
 
+    mes_atual = data_fim.strftime('%m')
+    ano_atual = data_fim.strftime('%Y')
+
+    pasta = os.path.join("output", f"{mes_atual}{ano_atual}")
+    os.makedirs(pasta, exist_ok=True)
+
     data_formatada = data_fim.strftime('%Y-%m-%d')
     nome_arquivo = f"Leads EDT {data_formatada}.xlsx"
 
-    edt.to_excel(nome_arquivo, index=False)
-    print(f"Planilha Excel gerada com sucesso: {nome_arquivo}")
+    # Caminho completo do arquivo
+    caminho_arquivo = os.path.join(pasta, nome_arquivo)
 
+    edt.to_excel(caminho_arquivo, index=False)
+
+    print(f"Planilha Excel gerada com sucesso: {caminho_arquivo}")
