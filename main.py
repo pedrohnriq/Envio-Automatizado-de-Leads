@@ -20,14 +20,10 @@ def main():
 
     email_sender = Email()
 
-    destinatarios = ["fernando.santos@energiadetodos.com.br", 
-                     "planejamento@energiadetodos.com.br", 
-                     "lucas.alves@energiadetodos.com.br"
-    ]
+    destinatarios = os.getenv('Email_TO').split(',')
+    
 
-    copia = ["pedrooliveira@cartaodetodos.com", 
-             "leonardo.rocha@energiadetodos.com.br", 
-             "cassioluizdasilva@cartaodetodos.com"]
+    copia = os.getenv('Email_CC').split(',')
 
     assunto = f"Relatório Diário EDT - {data_ontem}"
 
