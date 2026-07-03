@@ -24,6 +24,3 @@ def conexao():
     except Exception as e:
         print("Erro ao conectar:")
         print(repr(e))
-
-
-#conexao()

@@ -9,7 +9,12 @@ def main():
         datetime.now() - timedelta(days=1)
     ).strftime("%Y-%m-%d")
 
-    arquivo_relatorio = f"Leads EDT {data_ontem}.xlsx"
+    mes_atual = data_ontem[5:7]
+    ano_atual = data_ontem[:4]
+
+    pasta = os.path.join("output", f"{mes_atual}{ano_atual}")
+
+    arquivo_relatorio = os.path.join(pasta, f"Leads EDT {data_ontem}.xlsx")
 
     # Extrai/gera o relatório
     leads_edt()
